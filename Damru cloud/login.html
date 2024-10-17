@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Damru Cloud</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Damru Cloud</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Damru Cloud. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Retrieve existing users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Validate credentials
+            const validUser = users.find(user => user.username === username && user.password === password);
+            if (validUser) {
+                alert('Login successful!');
+                localStorage.setItem('username', username); // Store username in localStorage
+                window.location.href = 'index.html'; // Redirect to index.html
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+    </script>
+</body>
+</html>

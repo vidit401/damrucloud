@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damru Cloud</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Damru Cloud</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li id="login-link"><a href="login.html">Login</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li id="profile-link" style="display: none;">
+                    <span id="username-display"></span>
+                    <div class="dropdown">
+                        <button class="dropbtn">▼</button>
+                        <div class="dropdown-content" id="dropdown-menu" style="display: none;">
+                            <a href="#" id="sign-out-btn">Sign Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Damru Cloud</h2>
+            <p>Secure, fast, and scalable cloud solutions for your business.</p>
+            <a href="#services" class="btn">Explore Our Services</a>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2>Our Services</h2>
+        <div class="service-card">
+            <h3>Cloud Storage</h3>
+            <p>Store and access your files anytime, anywhere.</p>
+        </div>
+        <div class="service-card">
+            <h3>Data Security</h3>
+            <p>We provide top-notch security to protect your data.</p>
+        </div>
+        <div class="service-card">
+            <h3>Scalable Solutions</h3>
+            <p>Grow your business with our scalable cloud infrastructure.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Damru Cloud. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('username-display').innerText = `Welcome, ${username}!`;
+            document.getElementById('login-link').style.display = 'none'; // Hide login link
+            document.getElementById('profile-link').style.display = 'block'; // Show profile link
+        }
+
+        // Sign out functionality
+        document.getElementById('sign-out-btn')?.addEventListener('click', function() {
+            localStorage.removeItem('username'); // Remove username from localStorage
+            window.location.reload(); // Reload the page to reflect changes
+        });
+
+        // Toggle dropdown visibility
+        document.querySelector('.dropbtn').addEventListener('click', function() {
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>

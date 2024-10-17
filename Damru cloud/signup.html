@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Damru Cloud</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Damru Cloud</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div>
+                <label for="newUsername">Username:</label>
+                <input type="text" id="newUsername" required>
+            </div>
+            <div>
+                <label for="newPassword">Password:</label>
+                <input type="password" id="newPassword" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Damru Cloud. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            // Retrieve existing users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if the username already exists
+            const userExists = users.some(user => user.username === newUsername);
+            if (userExists) {
+                alert('Username already taken. Please choose a different username.');
+                return;
+            }
+
+            // Save new user
+            users.push({ username: newUsername, password: newPassword });
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Sign up successful! You can now log in.');
+
+            // Redirect to login page after successful sign-up
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
